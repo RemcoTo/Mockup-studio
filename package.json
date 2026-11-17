@@ -1,0 +1,59 @@
+{
+  "name": "mockup-studio",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "node --env-file-if-exists=.env .output/server/index.mjs",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "node --experimental-strip-types tests/e2e/workflow.e2e.ts",
+    "browsers": "playwright install chromium",
+    "test:api": "node --experimental-strip-types tests/api/authz.api.ts",
+    "build:worker": "node scripts/build-worker.mjs",
+    "build:devices": "node scripts/build-devices.mjs models",
+    "stripe:setup": "node scripts/stripe-setup.mjs",
+    "test:e2e:scenes": "node --experimental-strip-types tests/e2e/scenes.e2e.ts",
+    "test:e2e:improvements": "node --experimental-strip-types tests/e2e/improvements.e2e.ts",
+    "test:e2e:email": "node --experimental-strip-types tests/e2e/email.e2e.ts",
+    "test:e2e:palette": "node --experimental-strip-types tests/e2e/palette.e2e.ts",
+    "test:e2e:device3d": "node --experimental-strip-types tests/e2e/device3d.e2e.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/schibsted-grotesk": "^5.3.0",
+    "@napi-rs/canvas": "^1.0.13",
+    "fflate": "^0.8.3",
+    "ffmpeg-static": "^5.3.0",
+    "nodemailer": "^10.3.0",
+    "nuxt": "^4.6.3",
+    "pdfjs-dist": "^6.4.299",
+    "playwright-core": "^1.64.1",
+    "sharp": "^0.35.5",
+    "stripe": "^23.0.1",
+    "three": "^0.187.0",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/nodemailer": "^8.0.2",
+    "@types/smtp-server": "^3.5.13",
+    "@types/three": "^0.187.0",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.64.1",
+    "smtp-server": "^3.21.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
+  }
+}

@@ -1,0 +1,27 @@
+# Mockup Studio met automatische HTTPS via Caddy.
+#   1. Kopieer .env.example naar .env en vul NUXT_APP_URL in (https://jouw-domein.nl).
+#   2. Zet DOMAIN hieronder op je domein en laat de DNS naar deze server wijzen.
+#   3. docker compose up -d
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NUXT_TRUST_PROXY: "1"
+    volumes:
+      - data:/data
+    shm_size: "1gb"
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    command: caddy reverse-proxy --from ${DOMAIN:-localhost} --to app:3000
+    volumes:
+      - caddy:/data
+    depends_on: [app]
+volumes:
+  data:
+  caddy:
